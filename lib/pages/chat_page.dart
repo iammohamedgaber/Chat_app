@@ -83,7 +83,10 @@ class ChatPage extends StatelessWidget {
                       },
 
                       decoration: InputDecoration(
-                        hint: Text('Send Message',style: TextStyle(color: Colors.white),),
+                        hint: Text(
+                          'Send Message',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         suffixIcon: Icon(Icons.send, color: Colors.cyan),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),

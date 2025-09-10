@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Registerpage extends StatefulWidget {
-const  Registerpage({super.key});
+  const Registerpage({super.key});
   static String id = "Registerpage";
 
   @override
@@ -48,7 +48,6 @@ class _RegisterpageState extends State<Registerpage> {
                   const SizedBox(height: 150),
 
                   Center(
-                    
                     child: Text(
                       'Scholar Chat',
                       style: TextStyle(
@@ -68,7 +67,7 @@ class _RegisterpageState extends State<Registerpage> {
                     onChanged: (data) {
                       email = data;
                     },
-          
+
                     label: "Email",
                     hint: "Email",
                   ),
@@ -80,18 +79,22 @@ class _RegisterpageState extends State<Registerpage> {
                       password = data;
                     },
                   ),
-          
+
                   SizedBox(height: 20),
                   CustomButtom(
                     namebotoom: "Register",
-          
+
                     onTap: () async {
                       if (formke.currentState!.validate()) {
                         islodaing = true;
                         setState(() {});
                         try {
                           await creatuser();
-                         Navigator.pushNamed(context, ChatPage.id);
+                          Navigator.pushNamed(
+                            context,
+                            ChatPage.id,
+                            arguments: email,
+                          );
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnacbar(context, 'weak-password');
@@ -99,7 +102,7 @@ class _RegisterpageState extends State<Registerpage> {
                             showSnacbar(context, "email-already-in-use");
                           }
                         } catch (e) {
-                          showSnacbar( context, "ther was an error");
+                          showSnacbar(context, "ther was an error");
                         }
                         islodaing = false;
                         setState(() {});
@@ -114,7 +117,7 @@ class _RegisterpageState extends State<Registerpage> {
                         'already have an account ?',
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-          
+
                       GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
